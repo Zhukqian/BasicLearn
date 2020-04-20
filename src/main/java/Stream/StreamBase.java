@@ -55,7 +55,15 @@ public class StreamBase {
        /* List<String> stringList = stream.map(s -> s.toUpperCase()).collect(Collectors.toList());
         stringList.forEach(System.out::println);*/
 
-       //flatMap()：对每个元素执行mapper指定的操作，并用所有mapper返回的Stream中的元素组成一个新的Stream作为最终返回结果，通俗易懂就是将原来的stream中的所有元素都展开组成一个新的stream
+
+
+        // 使用Collectors.joining()拼接字符串
+        Stream<String> streamJson = Stream.of("张三","李四","王五","赵六");
+//    String s = stream.collect(Collectors.joining()); // 张三李四王五赵六
+//    String s = stream.collect(Collectors.joining("-")); // 张三-李四-王五-赵六
+        String s = streamJson.collect(Collectors.joining("-", "(", ")")); // (张三-李四-王五-赵六)
+        System.out.println(s);
+        //flatMap()：对每个元素执行mapper指定的操作，并用所有mapper返回的Stream中的元素组成一个新的Stream作为最终返回结果，通俗易懂就是将原来的stream中的所有元素都展开组成一个新的stream
         //创建一个 装有两个泛型为integer的集合
         Stream<List<Integer>> streamMap = Stream.of(Arrays.asList(1, 2, 3), Arrays.asList(4, 5));
         // 将两个合为一个
